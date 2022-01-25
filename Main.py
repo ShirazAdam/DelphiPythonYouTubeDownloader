@@ -12,7 +12,6 @@
 from delphivcl import *
 from pytube import YouTube
 from pytube import Stream
-from threading import Thread
 from tkinter import filedialog
 from tkinter import messagebox
 
@@ -50,15 +49,12 @@ class MainForm(Form):
 
         self.logOutput = Memo(self)
         self.logOutput.SetProps(Parent = self)
-        self.logOutput.SetBounds(10, 100, 560, 270)
+        self.logOutput.SetBounds(10, 100, 560, 250)
 
         self.OnClose = self.__on_form_close
 
     def __on_btnDownload_Click(self, sender):
         try:
-            ##process = Thread(target = self.__download_video, args = ())
-            ##process.start()
-            ##threads.append(process)
             self.__download_video()
         except RuntimeError as error:
             self.logOutput.Lines.Add("Error with threading:" + error)
