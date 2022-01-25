@@ -1,0 +1,10 @@
+altgraph==0.17.2
+delphivcl==0.1.31
+engineering-notation==0.6.0
+future==0.18.2
+pefile==2021.9.3
+pyinstaller==4.8
+pyinstaller-hooks-contrib==2021.5
+pytube==11.0.2
+pywin32-ctypes==0.2.0
+tk-tools==0.14.0
