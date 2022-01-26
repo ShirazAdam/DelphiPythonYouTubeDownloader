@@ -33,7 +33,7 @@ class MainForm(Form):
         self.txtEditUrl = Edit(self)
         self.txtEditUrl.SetProps(Parent = self)
         self.txtEditUrl.SetBounds(10, 30, 420, 20)
-        self.txtEditUrl.Text = "https://www.youtube.com/watch?v=SogtUeGKm4s"
+        self.txtEditUrl.Text = ""
 
         self.btnAnalyse = Button(self)
         self.btnAnalyse.SetProps(Parent = self, Caption = "Analyse")
@@ -62,6 +62,7 @@ class MainForm(Form):
         self.logOutput = Memo(self)
         self.logOutput.SetProps(Parent = self)
         self.logOutput.SetBounds(10, 170, 560, 180)
+        self.logOutput.Lines.Add("Please note that this software has been design for use on Windows only")
 
         self.OnClose = self.__on_form_close
 
@@ -86,25 +87,23 @@ class MainForm(Form):
         self.ITag = itag
 
     def __on_btnDownload_Click(self, sender) -> None:
-        isValid = os.path.isfile(self.txtEditSave.Text)
+        isValid : bool = os.path.isfile(self.txtEditSave.Text)
+        isStreamSelected : bool = self.cmbBxVideos.Text.strip()
 
-        if isValid:
+        if isValid and isStreamSelected:
             self.__download_video()
-        else:
+        elif not isValid:
             self.logOutput.Lines.Add("Please save file to a valid location")
+        elif not isStreamSelected:
+            self.logOutput.Lines.Add("Please select a stream to download")
+        else:
+            self.logOutput.Lines.Add("Hmm...")
 
     def __download_video(self) -> None:
         self.logOutput.Lines.Add("Starting download for '{a} ({b})'...".format(a = self.YT.title, b = self.ITag))
 
         try:
-            ##stream = yt.streams.get_by_itag(22)
-            ##stream.download()
-##            yt = YouTube(self.txtEditUrl.Text)
-##            yt.register_on_progress_callback(self.__on_download_Progress)
-##            video = yt.streams.filter(progressive = True, file_extension = "mp4").last()
-##            video.download(filename = self.txtEditSave.Text)
             video = self.YT.streams.get_by_itag(self.ITag)
-            ##self.logOutput.Lines.Add(video.itag)
             video.download(filename = self.txtEditSave.Text)
             self.logOutput.Lines.Add("Download complete for '{a}'".format(a = self.YT.title))
         except RuntimeError as error:
@@ -133,7 +132,7 @@ class MainForm(Form):
 
 def main():
     Application.Initialize()
-    Application.Title = "Hello Python from Delphi"
+    Application.Title = "Hello Python from DelphiVCL"
     Main = MainForm(Application)
     Main.Show()
     FreeConsole()
