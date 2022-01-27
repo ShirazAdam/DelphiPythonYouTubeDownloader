@@ -61,8 +61,13 @@ class MainForm(Form):
 
         self.logOutput = Memo(self)
         self.logOutput.SetProps(Parent = self)
-        self.logOutput.SetBounds(10, 170, 560, 180)
+        self.logOutput.SetBounds(10, 170, 560, 150)
         self.logOutput.Lines.Add("Please note that this software has been design for use on Windows only")
+
+        self.btnClose = Button(self)
+        self.btnClose.SetProps(Parent = self, Caption = "Close software")
+        self.btnClose.SetBounds(10, 330, 560, 25)
+        self.btnClose.OnClick = self.__on_btnClose_Click
 
         self.OnClose = self.__on_form_close
 
@@ -126,6 +131,9 @@ class MainForm(Form):
     def __display_progress_bar(self, bytes_received : int, filesize : int) -> None:
         percent = round(100.0 * bytes_received / float(filesize), 1)
         self.logOutput.Lines.Add(str(percent) + "%")
+
+    def __on_btnClose_Click(self, sender) -> None:
+        Application.Terminate()
 
     def __on_form_close(self, sender, action) -> None:
         action.Value = caFree
