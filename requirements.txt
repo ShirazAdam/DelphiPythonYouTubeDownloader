@@ -1,7 +1,7 @@
 altgraph==0.17.2
 asgiref==3.4.1
 cycler==0.11.0
-Django==3.2.9
+Django==3.2.11
 django-admin==2.0.1
 django-excel-base==1.0.4
 django-excel-response2==3.0.2
