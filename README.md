@@ -1,1 +1,3 @@
-# YouTube downloader using DelphiVCL and PyTube
+# YouTube downloader using DelphiVCL, PyInstaller and PyTube
+
+A simple python script using DelphiVCL and PyTube to download videos from YouTube.
