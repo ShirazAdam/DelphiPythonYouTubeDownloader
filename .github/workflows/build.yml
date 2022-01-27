@@ -39,7 +39,7 @@ jobs:
           tag_name: tag-${{ steps.date.outputs.date }}
           release_name: release-${{ steps.date.outputs.date }}
           body: |
-            Test Release v1.0.0
+            YouTube downloader using DelphiVCL on Python
           draft: false
           prerelease: false
       - name: Upload Release Asset
