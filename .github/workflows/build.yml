@@ -25,7 +25,6 @@ jobs:
         with:
           name: Windows_DelphiVCLPythonYouTubeDownloader
           path: dist/Main.exe
-
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
