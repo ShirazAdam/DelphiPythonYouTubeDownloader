@@ -25,14 +25,19 @@ jobs:
         with:
           name: Windows_DelphiVCLPythonYouTubeDownloader
           path: dist/Main.exe
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%d-%m-%Y')"
+      - name: Test with environment variables
+        run: echo $TAG_NAME - $RELEASE_NAME
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: ${{ github.ref }}
+          tag_name: tag-${{ steps.date.outputs.date }}
+          release_name: release-${{ steps.date.outputs.date }}
           body: |
             Test Release v1.0.0
           draft: false
