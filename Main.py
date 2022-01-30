@@ -140,7 +140,7 @@ class MainForm(Form):
 
 def main():
     Application.Initialize()
-    Application.Title = "DelphiVCL on Python for downloading YouTube videos"
+    Application.Title = "YouTube video downloader (built with DelphiVCL on Python)"
     Main = MainForm(Application)
     Main.Show()
     FreeConsole()
