@@ -98,9 +98,9 @@ class MainForm(Form):
         if isValid and isStreamSelected:
             self.__download_video()
         elif not isValid:
-            self.logOutput.Lines.Add("Please save file to a valid location")
+            self.logOutput.Lines.Add("Please select a valid location to save this file")
         elif not isStreamSelected:
-            self.logOutput.Lines.Add("Please select a stream to download")
+            self.logOutput.Lines.Add("Please select a stream first then click on download")
         else:
             self.logOutput.Lines.Add("Hmm...")
 
